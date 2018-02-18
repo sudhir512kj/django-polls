@@ -1,0 +1,17 @@
+{% include "polls/includes/header.html" %}
+{% include "polls/includes/menu.html" %}
+
+<div class="container">
+    <h1>{{ question.question_text }}</h1>
+
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a><br>
+    <a href="{% url 'polls:index' %}">Back to main page!</a>
+</div>
+
+{% include "polls/includes/footer.html" %}
